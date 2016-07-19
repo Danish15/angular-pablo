@@ -1,29 +1,18 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset='utf-8'>
-    <title>Hello Angular 2!</title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-
-    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/zone.js/dist/zone.js"></script>
-    <script src="node_modules/reflect-metadata/Reflect.js"></script>
-    <script src="node_modules/systemjs/dist/system.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="systemjs.config.js"></script>
-    <script> System.import ('built/pomodoro-timer').then(null, console.error.bind(console)); </script>
-</head>
-
-<body>
-    <nav class='navbar navbar-default navbar-static top'>
-        <div class="container">
-            <div class="navbar-header">
-                <strong class='navbar-brand'>My PomodoroTimer</strong>
-            </div>
-        </div>
-    </nav>
-    <pomodoro-timer></pomodoro-timer>
-</body>
-
-</html>
+<div class="container text-center">
+  <img src="http://www.legalproductivity.com/wp-content/uploads/2010/08/pomodoro_timer.jpg" alt="Pomodoro"/>
+  <countdown 
+    [seconds]="25"
+    (complete)="onCountdownCompleted()"
+    #counter>
+  </countdown>
+  <p>
+    <button class="btn btn-default"(click)="counter.seconds = 25">
+      Reset countdown to 25 seconds
+    </button>
+  </p>
+  <p *ngIf="counter.seconds < 10">
+    Beware! Only
+    <strong>{{ counter.seconds }} seconds</strong>
+    left.
+  </p>
+</div>
